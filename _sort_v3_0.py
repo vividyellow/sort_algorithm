@@ -31,6 +31,7 @@
 new:
     函数重新命名，梳理下注释。_07_heap_sort_v3是综合两种排序：顺序、逆序（引入一个ascending输入参数控制调用哪个）
     radix_sort的子函数名由x_sort改名为radix_sort
+    dict_result[arr[0]] += 1
 """
 # Remarks :
 """
@@ -606,6 +607,7 @@ def _08_counting_sort_v1(arr=[2, 1, 0, 3, 6, 6, 4, 5, 5, 8, 1]):
     min_value = arr[0]
     max_value = arr[0]
     dict_result = collections.defaultdict(lambda: 0)  # 也可以直接用int代替“lambda: 0”
+    dict_result[arr[0]] += 1
     for i in range(1, len_arr):
         COUNT += 1
         if arr[i] > max_value:

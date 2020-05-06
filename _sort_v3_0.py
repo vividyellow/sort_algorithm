@@ -11,6 +11,22 @@
     _01_bubble_sort_v1, _01_bubble_sort_v2, _02_selection_sort_v1, _03_insertion_sort_v1,
     _04_shell_sort_v1, _05_merge_sort_v1, _06_quick_sort_v1, _06_quick_sort_v2, _07_heap_sort_v1, _07_heap_sort_v2, _07_heap_sort_v3,
     _08_counting_sort_v1, _09_bucket_sort_v1, _10_radix_sort_v1, _10_radix_sort_v2
+
+    _01_bubble_sort_v1(arr=[2, 1, 0, 3, 6, 6, 4, 5, 5, 8, 1]):
+    _01_bubble_sort_v2(arr=[2, 1, 0, 3, 6, 6, 4, 5, 5, 8, 1]):
+    _02_selection_sort_v1(arr=[2, 1, 0, 3, 6, 6, 4, 5, 5, 8, 1]):
+    _03_insertion_sort_v1(arr=[2, 1, 0, 3, 6, 6, 4, 5, 5, 8, 1]):
+    _04_shell_sort_v1(arr=[2, 1, 0, 3, 6, 6, 4, 5, 5, 8, 1]):
+    _05_merge_sort_v1(arr=[2, 1, 0, 3, 6, 6, 4, 5, 5, 8, 1]):
+    _06_quick_sort_v1(arr=[2, 1, 0, 3, 6, 6, 4, 5, 5, 8, 1]):
+    _06_quick_sort_v2(arr=[2, 1, 0, 3, 6, 6, 4, 5, 5, 8, 1]):
+    _07_heap_sort_v1(arr=[2, 1, 0, 3, 6, 6, 4, 5, 5, 8, 1]):
+    _07_heap_sort_v2(arr=[2, 1, 0, 3, 6, 6, 4, 5, 5, 8, 1]):
+    _07_heap_sort_v3(arr=[2, 1, 0, 3, 6, 6, 4, 5, 5, 8, 1], ascending=True):
+    _08_counting_sort_v1(arr=[2, 1, 0, 3, 6, 6, 4, 5, 5, 8, 1]):
+    _09_bucket_sort_v1(arr=[2, 1, 0, 3, 6, 6, 4, 5, 5, 8, 1], bucket_count=5):
+    _10_radix_sort_v1(arr=[2, 1, 0, 3, 6, 6, 4, 5, 5, 8, 1]):  # 数字位数：3/4/5【自动计算！根据第一遍遍历得到的max_value、highest_bit】
+    _10_radix_sort_v2(arr=[2, 1, 0, 3, 6, 6, 4, 5, 5, 8, 1]):  # 数字位数：3/4/5【自动计算！根据第一遍遍历得到的max_value】
 """
 # Description of Changes :
 """
@@ -32,6 +48,8 @@ new:
     函数重新命名，梳理下注释。_07_heap_sort_v3是综合两种排序：顺序、逆序（引入一个ascending输入参数控制调用哪个）
     radix_sort的子函数名由x_sort改名为radix_sort
     dict_result[arr[0]] += 1
+    _10_radix_sort_v1单独增加一次循环找出max_value，得到highest_bit
+    所有函数增加了注释，调整了注释
 """
 # Remarks :
 """
@@ -161,7 +179,8 @@ def _03_insertion_sort_v1(arr=[2, 1, 0, 3, 6, 6, 4, 5, 5, 8, 1]):
 @dec_print_func_name
 def _04_shell_sort_v1(arr=[2, 1, 0, 3, 6, 6, 4, 5, 5, 8, 1]):
     """shell排序：对03_insertion_sort的改进：不断调整步长（从一半总长（基本上两个一小队），到1/4（4个一小队），……直到间隔为1（所有的一小队）），
-    然后同一步长取样到的组成小队列内部用“插入排序”排好序"""
+    然后同一步长取样到的组成小队列内部用“插入排序”排好序
+    """
 
     len_arr = len(arr)
     global COUNT
@@ -286,7 +305,8 @@ def merge_sort(arr):
 def _05_merge_sort_v1(arr=[2, 1, 0, 3, 6, 6, 4, 5, 5, 8, 1]):
     """归并排序：先两两元素排序好，然后四四排序好，……总之，每次两个拍好序的队列一一比对，合并为一个大的排好序的队列，直到整个队列：
     大排序分为三个步骤：1，长的原始数组被拆分为两块（除非已经是1个元素）（就不拆分了）；2，两块分别递归执行“大排序”，得到排序好的各自的结果；
-    3，把排序好的两块的结果合并到一起就得到大排序的最终结果"""
+    3，把排序好的两块的结果合并到一起就得到大排序的最终结果
+    """
 
     global COUNT
     original_count = COUNT
@@ -582,8 +602,9 @@ def _07_heap_sort_v2(arr=[2, 1, 0, 3, 6, 6, 4, 5, 5, 8, 1]):
     print("sorted_list:{}".format(sorted_list))
     return sorted_list
 
+
 @dec_print_func_name
-def _07_heap_sort_v3(arr=[2, 1, 0, 3, 6, 6, 4, 5, 5, 8, 1],ascending=True):
+def _07_heap_sort_v3(arr=[2, 1, 0, 3, 6, 6, 4, 5, 5, 8, 1], ascending=True):
     """堆排序【可选：顺序、逆序】：先建堆，再不断的取堆最大元素（最小元素则建相应的堆）"""
 
     if ascending:
@@ -594,8 +615,7 @@ def _07_heap_sort_v3(arr=[2, 1, 0, 3, 6, 6, 4, 5, 5, 8, 1],ascending=True):
 
 @dec_print_func_name
 def _08_counting_sort_v1(arr=[2, 1, 0, 3, 6, 6, 4, 5, 5, 8, 1]):
-    """
-    计数排序：最大-最小，然后做成一个个的字典key，来计数。最后再一个个按顺序取出来得到排序后的序列
+    """计数排序：最大-最小，然后做成一个个的字典key，来计数。最后再一个个按顺序取出来得到排序后的序列
     【BinSort：会直接将数34放在数组的下标34处（BinSort想法非常简单，首先创建数组A[MaxValue]；然后将每个数放到相应的位置上（例如17放在下标17的数组位置）；最后遍历数组，即为排序后的结果。）】
     """
     len_arr = len(arr)
@@ -628,12 +648,14 @@ def _08_counting_sort_v1(arr=[2, 1, 0, 3, 6, 6, 4, 5, 5, 8, 1]):
 
 
 @dec_print_func_name
-def _09_bucket_sort_v1(arr=[2, 1, 0, 3, 6, 6, 4, 5, 5, 8, 1], max_value=20, bucket_count=5):
+def _09_bucket_sort_v1(arr=[2, 1, 0, 3, 6, 6, 4, 5, 5, 8, 1], bucket_count=5):
     """桶排序（假设数列是均匀分布）：【大桶（有顺序）【比如100以内的数，可以先放进10个桶：0~10；11~20；……】，直接扔在桶里，里面还有小桶】（属于一种排序思想，小桶里面可以调用其他任意的排序方法）"""
 
     len_arr = len(arr)
     global COUNT
     original_count = COUNT
+
+    max_value = max(arr)  # 增加一次循环，找出最大值
 
     # 定义若干桶（计数排序其实是每个数确保有一个桶（min ~ max间的数都有一个桶）的桶排序）
     # 这里就定义10个桶吧（平均分为10个区间）【但是又保证每个桶至少间隔1个（min_step)以上的数字，至多20个(max_step)】
@@ -669,7 +691,7 @@ def _09_bucket_sort_v1(arr=[2, 1, 0, 3, 6, 6, 4, 5, 5, 8, 1], max_value=20, buck
 
 
 def get_current_bit(number, higher_bit):
-    # higher_bit为0时，得到个位的数字；为1时，得到十位的；为2时，得到百位的
+    """给定一个数，得到其指定位上的值：higher_bit为0时，得到个位的数字；为1时，得到十位的；为2时，得到百位的"""
 
     below_bits = number % (10 ** (higher_bit + 1))
     current_bit = below_bits // (10 ** (higher_bit))
@@ -678,6 +700,8 @@ def get_current_bit(number, higher_bit):
 
 
 def radix_sort(arr, higher_bit):
+    """从高位开始，放入一个个大桶中，再大桶中的数列根据低一位来放入各个中桶。再小桶，直到最后一位按照最小桶"""
+
     global COUNT
     original_count = COUNT
 
@@ -703,9 +727,8 @@ def radix_sort(arr, higher_bit):
 
 
 @dec_print_func_name
-def _10_radix_sort_v1(arr=[2, 1, 0, 3, 6, 6, 4, 5, 5, 8, 1]):  # 数字位数：3/4/5【自动计算！根据第一遍遍历得到的max_value】
-    """
-    基数排序1：最高位优先(Most Significant Digit first)法，简称MSD法【需要用到递归！】
+def _10_radix_sort_v1(arr=[2, 1, 0, 3, 6, 6, 4, 5, 5, 8, 1]):  # 数字位数：3/4/5【自动计算！根据第一遍遍历得到的max_value、highest_bit】
+    """基数排序1：最高位优先(Most Significant Digit first)法，简称MSD法【需要用到递归！】【还需要】
 
     基数排序：根据桶排序而来【比如：扑克牌排序法（多个顺序）】
     基数排序（radix sort）属于“分配式排序”（distribution sort），
@@ -716,11 +739,14 @@ def _10_radix_sort_v1(arr=[2, 1, 0, 3, 6, 6, 4, 5, 5, 8, 1]):  # 数字位数：
     之后，对后面的关键码继续这样的排序分组，直到按最次位关键码kd对各子组排序后。再将各组连接起来，便得到一个有序序列。
     最低位优先(Least Significant Digit first)法，简称LSD法【简单，不需要用到递归！】：先从kd开始排序，再对kd-1进行排序，依次重复，直到对k1排序后便得到一个有序序列。
     """
+
     # len_arr = len(arr)
     global COUNT
     original_count = COUNT
 
-    sorted_list = radix_sort(arr, 3)
+    max_value = max(arr)
+    highest_bit = len(str(int(max_value))) - 1  # 还有没有更好的方法？ print(math.floor(math.log10(9.9)))
+    sorted_list = radix_sort(arr, highest_bit)
 
     print("Total count: {}".format(COUNT - original_count))
     print("sorted_list: {}".format(sorted_list))
@@ -729,8 +755,7 @@ def _10_radix_sort_v1(arr=[2, 1, 0, 3, 6, 6, 4, 5, 5, 8, 1]):  # 数字位数：
 
 @dec_print_func_name
 def _10_radix_sort_v2(arr=[2, 1, 0, 3, 6, 6, 4, 5, 5, 8, 1]):  # 数字位数：3/4/5【自动计算！根据第一遍遍历得到的max_value】
-    """
-    基数排序2：最低位优先(Least Significant Digit first)法，简称LSD法：先从kd开始排序，再对kd-1进行排序，依次重复，直到对k1排序后便得到一个有序序列。【简单，不需要用到递归！】
+    """基数排序2：最低位优先(Least Significant Digit first)法，简称LSD法：先从kd开始排序，再对kd-1进行排序，依次重复，直到对k1排序后便得到一个有序序列。【简单，不需要用到递归！】
 
     基数排序：根据桶排序而来【比如：扑克牌排序法（多个顺序）】
     基数排序（radix sort）属于“分配式排序”（distribution sort），
@@ -741,6 +766,7 @@ def _10_radix_sort_v2(arr=[2, 1, 0, 3, 6, 6, 4, 5, 5, 8, 1]):  # 数字位数：
     之后，对后面的关键码继续这样的排序分组，直到按最次位关键码kd对各子组排序后。再将各组连接起来，便得到一个有序序列。
     最低位优先(Least Significant Digit first)法，简称LSD法：先从kd开始排序，再对kd-1进行排序，依次重复，直到对k1排序后便得到一个有序序列。
     """
+
     len_arr = len(arr)
     global COUNT
     original_count = COUNT
@@ -798,15 +824,13 @@ def _10_radix_sort_v2(arr=[2, 1, 0, 3, 6, 6, 4, 5, 5, 8, 1]):  # 数字位数：
 
 def main():
     """
-
-    :return:
     """
 
     # arr = range(0, 1, 1)
     # arr = range(10, 0, -1)
     # arr = list(arr)
 
-    arr = list(range(0, 100, 1))
+    arr = list(range(0, 30, 1))
     print("最初生成的arr: {}".format(arr))
     arr = [8, 2] + list(arr)
     random.shuffle(arr)
@@ -817,11 +841,12 @@ def main():
     print("待处理的arr: {}".format(arr))
 
     for fun in [_01_bubble_sort_v1, _01_bubble_sort_v2, _02_selection_sort_v1, _03_insertion_sort_v1,  # 这3种性能同量级
-                _04_shell_sort_v1, _05_merge_sort_v1, _06_quick_sort_v1, _06_quick_sort_v2, _07_heap_sort_v1, _07_heap_sort_v2, _07_heap_sort_v3,  # 这4种性能同量级
+                _04_shell_sort_v1, _05_merge_sort_v1, _06_quick_sort_v1, _06_quick_sort_v2, _07_heap_sort_v1,
+                _07_heap_sort_v2, _07_heap_sort_v3,  # 这4种性能同量级
                 _08_counting_sort_v1, _09_bucket_sort_v1, _10_radix_sort_v1, _10_radix_sort_v2]:  # 这3种性能同量级
     # for fun in [_07_heap_sort_v, _07_heap_sort_v1]:
     # for fun in [_04_shell_sort_v]:
-    # for fun in [_10_radix_sort_v1]:
+    # for fun in [_09_bucket_sort_v1]:
         arr_tmp = arr[:]
         fun(arr_tmp)
         print()
